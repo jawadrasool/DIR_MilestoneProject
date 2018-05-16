@@ -6,7 +6,7 @@ from bokeh.plotting import figure
 from bokeh.embed import components
 
 
-# main function
+# function to get data
 def getData(ticker):
     # requesting data from Quandl
     start = "2017-01-01"
@@ -24,22 +24,8 @@ def getData(ticker):
     return df
 
 
+# function to get plot
 def getPlot(df, priceTypes, ticker):
-    # create plot
-    p = figure(title="Quandl WIKI EOD Stock Prices - 2017", x_axis_type="datetime", x_axis_label="Date",
-               y_axis_label="Stock price", plot_width=1000)
-    if 'open' in priceTypes:
-        p.line(df.index, df['open'], color='orange', legend=ticker+': Opening price')
-    if 'adjOpen' in priceTypes:
-        p.line(df.index, df['adj. open'], color='red', legend='Adj. Opening price')
-    if 'close' in priceTypes:
-        p.line(df.index, df['close'], color='blue', legend='Closing price')
-    if 'adjClose' in priceTypes:
-        p.line(df.index, df['adj. close'], color='green', legend='Adj. Closing price')
-    return p
-
-def getPlot(df, priceTypes, ticker):
-    # create plot
     p = figure(title="Quandl WIKI EOD Stock Prices - 2017", x_axis_type="datetime", x_axis_label="Date",
                y_axis_label="Stock price", plot_width=1000)
 
@@ -76,4 +62,4 @@ def graph():
 
 if __name__ == '__main__':
     #  app.run(host='0.0.0.0', port=port)
-    app.run(port=33507)
+    app.run(host='0.0.0.0', port=33507)
