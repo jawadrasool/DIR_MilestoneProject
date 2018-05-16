@@ -1,5 +1,5 @@
 # importing libraries
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import requests
 import pandas as pd
 from bokeh.plotting import figure
@@ -41,6 +41,11 @@ app = Flask(__name__)
 
 
 @app.route('/')
+def main():
+    return redirect('/index')
+
+
+@app.route('/index', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
