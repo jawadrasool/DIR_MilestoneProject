@@ -1,18 +1,21 @@
 This is my Milestone Project for Data Incubator Reply!
 
+In this project, a Flask app on Heroku is created that accepts a stock ticker input from the user and plots price data for the year 2017. 
+The [Quandle WIKI dataset](https://www.quandl.com/databases/WIKIP) provides this data for free, and Python's Requests library is used to access it via API. 
+The data is then analyzed using pandas and plotted using Bokeh. 
+
+You can find the finished app [here](https://jawad-stockapp.herokuapp.com/index).
+
+Below is some useful information about this project.
+
 # Flask on Heroku
 
-This project is intended to help you tie together some important concepts and
+This project was intended to help the students tie together some important concepts and
 technologies from the 12-day course, including Git, Flask, JSON, Pandas,
 Requests, Heroku, and Bokeh for visualization.
 
-The repository contains a basic template for a Flask configuration that will
-work on Heroku.
-
-A [finished example](https://lemurian.herokuapp.com) that demonstrates some basic functionality.
-
 ## Step 1: Setup and deploy
-- Git clone the existing template repository.
+- Git clone the existing [template repository](https://github.com/thedataincubator/flask-framework).
 - `Procfile`, `requirements.txt`, `conda-requirements.txt`, and `runtime.txt`
   contain some default settings.
 - There is some boilerplate HTML in `templates/`
