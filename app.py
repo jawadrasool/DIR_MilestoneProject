@@ -11,15 +11,14 @@ def getData(ticker):
     # requesting data from Quandl
     start = "2017-01-01"
     end = "2018-01-01"
-    req_url = 'https://www.quandl.com/api/v3/datasets/WIKI/' + ticker + '.json?start_date=' + start \
-              + '&end_date=' + end + '&order=asc&api_key=txQkb6XK4ZB8sSX2ARRi'
-
-    r = requests.get(req_url)
+    reqUrl = 'https://www.quandl.com/api/v3/datasets/WIKI/' + ticker + '.json?start_date=' + start \
+              + '&end_date=' + end + '&api_key=txQkb6XK4ZB8sSX2ARRi'
+    r = requests.get(reqUrl)
 
     # fetch data
     return_data = r.json()['dataset']
     df = pd.DataFrame(return_data['data'], columns=return_data['column_names'])
-    df.columns = [x.lower() for x in df.columns]
+    df.columns = [col.lower() for col in df.columns]
     df = df.set_index(pd.DatetimeIndex(df['date']))
     return df
 
@@ -29,11 +28,11 @@ def getPlot(df, priceTypes, ticker):
     p = figure(title="Quandl WIKI EOD Stock Prices - 2017", x_axis_type="datetime", x_axis_label="Date",
                y_axis_label="Stock price", plot_width=1000)
 
-    dict = {'open': 'open', 'adjOpen': 'adj. open', 'close': 'close', 'adjClose': 'adj. close'}
+    mapping = {'open': 'open', 'adjOpen': 'adj. open', 'close': 'close', 'adjClose': 'adj. close'}
     colour = {'open': 'orange', 'adjOpen': 'red', 'close': 'blue', 'adjClose': 'green'}
 
     for priceType in priceTypes:
-        p.line(df.index, df[dict[priceType]], color=colour[priceType], legend=ticker + ": " + dict[priceType])
+        p.line(df.index, df[mapping[priceType]], color=colour[priceType], legend=ticker + ": " + mapping[priceType])
     return p
 
 
